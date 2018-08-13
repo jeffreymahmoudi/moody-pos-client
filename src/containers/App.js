@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { fetchMenu } from '../actions/menuActions'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
@@ -7,6 +8,10 @@ import Landing from './Landing'
 import Dashboard from './Dashboard'
 
 class App extends Component {
+  componentDidMount = () => {
+    this.props.loadMenuConnect()
+  }
+  
   render() {
     return (
       <Router>
@@ -26,4 +31,8 @@ class App extends Component {
   }
 }
 
-export default connect()(App)
+const mapDispatchToProps = dispatch => ({
+  loadMenuConnect: () => dispatch(fetchMenu())
+})
+
+export default connect(null, mapDispatchToProps)(App)
