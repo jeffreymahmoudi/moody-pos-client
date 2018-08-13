@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchTables } from '../actions/tableActions'
+import { fetchTables, selectTable } from '../actions/tableActions'
 
 class Tables extends Component {
   componentDidMount = () => {
-    this.props.loadTablesConect()
+    this.props.loadTablesConnect()
+  }
+  
+  onSelectedTableChange = (selectedTable) => {
+    this.props.selectTableConnect(selectedTable)
   }
 
   renderResults = () => {
@@ -13,11 +18,18 @@ class Tables extends Component {
     }
 
     if (this.props.error) {
-      return <strong>{this.props.error}</strong>;
+      return <strong>{this.props.error.message}</strong>;
     }
 
     const tables = this.props.tables.map((table, index) =>
-      <li key={index}>Table {table.number}</li>
+      <li key={index}>
+        <Link
+        to={`/order/${table.id}`}
+        onClick={() => this.onSelectedTableChange(table)}
+        >
+          Table {table.number}
+        </Link>
+      </li>
     );
 
     return tables;
@@ -26,8 +38,8 @@ class Tables extends Component {
   render() {
     return (
       <ul className='tables'>
-      {this.renderResults()}
-    </ul>    
+        {this.renderResults()}
+      </ul>
     )
   }
 }
@@ -39,7 +51,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadTablesConect: () => dispatch(fetchTables())
+  loadTablesConnect: () => dispatch(fetchTables()),
+  selectTableConnect: (table) => dispatch(selectTable(table))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tables)

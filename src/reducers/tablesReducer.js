@@ -1,8 +1,4 @@
-import {
-  FETCH_TABLES_REQUEST,
-  FETCH_TABLES_SUCCESS,
-  FETCH_TABLES_ERROR
-} from '../actions/actionTypes'
+import * as types from '../actions/actionTypes'
 
 const initialState = {
   tables: [],
@@ -12,18 +8,18 @@ const initialState = {
 
 const tables = (state = initialState, action) => {
   switch(action.type) {
-    case FETCH_TABLES_REQUEST:
+    case types.FETCH_TABLES_REQUEST:
       return Object.assign({}, state, {
         loading: true,
         error: null
       });
-    case FETCH_TABLES_SUCCESS:
+    case types.FETCH_TABLES_SUCCESS:
       return Object.assign({}, state, {
         tables: action.tables,
         loading: false,
         error: null
       });
-    case FETCH_TABLES_ERROR:
+    case types.FETCH_TABLES_ERROR:
       return Object.assign({}, state, {
         error: action.error,
         loading: false,

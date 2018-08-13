@@ -16,7 +16,6 @@ export const fetchTablesError = error => ({
 })
 
 export const fetchTables = () => (dispatch, getState) => {
-  console.log(getState())
   dispatch(fetchTablesRequest())
   fetch(`${API_BASE_URL}/tables`)
   .then(res => {
@@ -32,3 +31,8 @@ export const fetchTables = () => (dispatch, getState) => {
     dispatch(fetchTablesError(error))
   })
 }
+
+export const selectTable = table => ({
+  type: types.SELECT_TABLE,
+  table
+})
