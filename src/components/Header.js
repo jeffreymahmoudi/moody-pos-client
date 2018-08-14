@@ -8,7 +8,6 @@ export default function Header() {
       <nav className="header-right">
         <Link to="/tables">Tables</Link>
         <Link to="/landing">Landing</Link>
-        <Link to="/dashboard">Dashboard</Link>
       </nav>
     </header>
   ); 

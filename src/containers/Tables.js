@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchTables, selectTable } from '../actions/tableActions'
+import TableCard from '../components/TableCard'
 
-class Tables extends Component {
+import './tables.css'
+
+class TablesContainer extends Component {
   componentDidMount = () => {
     this.props.loadTablesConnect()
   }
@@ -22,14 +25,13 @@ class Tables extends Component {
     }
 
     const tables = this.props.tables.map((table, index) =>
-      <li key={index}>
-        <Link
+      <Link
         to={`/order/${table.id}`}
         onClick={() => this.onSelectedTableChange(table)}
-        >
-          Table {table.number}
-        </Link>
-      </li>
+        key={index}
+      >
+        <TableCard  table={table} />
+      </Link>
     );
 
     return tables;
@@ -37,9 +39,9 @@ class Tables extends Component {
 
   render() {
     return (
-      <ul className='tables'>
+      <div className="tables-container">
         {this.renderResults()}
-      </ul>
+      </div>
     )
   }
 }
@@ -55,4 +57,4 @@ const mapDispatchToProps = dispatch => ({
   selectTableConnect: (table) => dispatch(selectTable(table))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tables)
+export default connect(mapStateToProps, mapDispatchToProps)(TablesContainer)

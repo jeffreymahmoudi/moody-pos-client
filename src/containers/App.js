@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchMenu } from '../actions/menuActions'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Landing from '../components/Landing'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import Tables from '../containers/Tables'
-import Landing from './Landing'
-import Dashboard from './Dashboard'
+import Tables from './Tables'
+
 
 class App extends Component {
   componentDidMount = () => {
@@ -20,10 +20,9 @@ class App extends Component {
           <Header />
           <main>
             <Switch>
-              <Route exact path="/" component={Landing} />
+              <Route exact path="/" component={Tables} />
               <Route path="/tables" component={Tables} />
               <Route path="/landing" component={Landing} />
-              <Route path="/dashboard" component={Dashboard} />
             </Switch>
           </main>
           <Footer />
