@@ -1,0 +1,16 @@
+
+
+.menu-item {
+  padding: 15px;
+  border-top: solid 1px #000;
+}
+
+.menu-button {
+  float: right;
+}
+
+.menu-item button {
+  width: 80px;
+  height: 40px;
+  margin-top: 15px;
+}

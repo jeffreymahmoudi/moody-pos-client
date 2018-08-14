@@ -6,6 +6,7 @@ import Landing from '../components/Landing'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Tables from './Tables'
+import Order from './Order'
 
 
 class App extends Component {
@@ -16,12 +17,13 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="app">
+        <div className="app-container">
           <Header />
-          <main>
+          <main className="app-content">
             <Switch>
               <Route exact path="/" component={Tables} />
               <Route path="/tables" component={Tables} />
+              <Route path="/order/:tableId" component={Order} />
               <Route path="/landing" component={Landing} />
             </Switch>
           </main>

@@ -1,11 +1,11 @@
 import React from 'react'
 
-import './tablecard.css'
+import '../styles/table-card.css'
 
-const TableCard = (props) => {
+const TableCard = ({table}) => {
   return (
     <div className="table-card">
-      <h3 className="table-number">{props.table.number}</h3>
+      <h3 className="table-number">{table.number}</h3>
     </div>
   )  
 }
