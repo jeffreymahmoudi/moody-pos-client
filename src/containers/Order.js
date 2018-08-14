@@ -36,10 +36,23 @@ class Order extends Component {
   
   render() {
     return (
-      <div className="menu-container">
-        <ul className="menu-list">
-          {this.renderMenuItems()}
-        </ul>
+      <div className="order-container row">
+        <div className="menu-wrapper column">
+          <ul className="menu-list">
+            {this.renderMenuItems()}
+          </ul>
+        </div>
+        <div className="order-wrapper column">
+          <div className="order-buttons">
+            <button>Pay</button>
+          </div>
+          <div className="order-items-wrapper">
+            <ul>
+              <li>Item 1</li>
+              <li>Item 2</li>
+            </ul>
+          </div>
+        </div>
       </div>
     )
   }
