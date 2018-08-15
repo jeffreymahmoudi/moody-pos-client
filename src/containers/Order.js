@@ -60,7 +60,7 @@ class Order extends Component {
 
 const mapStateToProps = (state) => ({
   menu: state.menu.menu,
-  selectedTable: state.selectedTable
+  selectedTable: state.tables.selectedTable
 })
 
 const mapDispatchToProps = dispatch => ({

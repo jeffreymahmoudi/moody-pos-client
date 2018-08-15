@@ -15,6 +15,9 @@ export const fetchTablesError = error => ({
   error
 })
 
+//
+// Async Request
+//
 export const fetchTables = () => (dispatch, getState) => {
   dispatch(fetchTablesRequest())
   fetch(`${API_BASE_URL}/tables`)

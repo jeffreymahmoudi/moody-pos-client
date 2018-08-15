@@ -3,7 +3,8 @@ import * as types from '../actions/actionTypes'
 const initialState = {
   tables: [],
   loading: false,
-  error: null
+  error: null,
+  selectedTable: null
 }
 
 const tables = (state = initialState, action) => {
@@ -24,6 +25,10 @@ const tables = (state = initialState, action) => {
         error: action.error,
         loading: false,
       });
+    case types.SELECT_TABLE:
+      return Object.assign({}, state, {
+        selectedTable: action.table
+      })
     default: return state;
   }
 }

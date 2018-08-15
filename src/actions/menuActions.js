@@ -15,9 +15,12 @@ export const fetchMenuError = error => ({
   error
 })
 
+//
+// Async Request
+//
 export const fetchMenu = () => (dispatch, getState) => {
   dispatch(fetchMenuRequest())
-  fetch(`${API_BASE_URL}/menu`)
+  fetch(`${API_BASE_URL}/items`)
   .then(res => {
     if (!res.ok) {
       return Promise.reject(res.statusText)
