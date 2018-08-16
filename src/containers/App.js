@@ -4,7 +4,7 @@ import { fetchMenu } from '../actions/menuActions'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Landing from '../components/Landing'
 import Header from '../components/Header'
-import Footer from '../components/Footer'
+// import Footer from '../components/Footer'
 import Tables from './Tables'
 import Order from './Order'
 
@@ -27,7 +27,7 @@ class App extends Component {
               <Route path="/landing" component={Landing} />
             </Switch>
           </main>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     );
