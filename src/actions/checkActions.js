@@ -75,3 +75,45 @@ export const fetchNewCheck = (table) => (dispatch, getState) => {
     dispatch(fetchNewCheckError(error))
   })
 }
+
+export const closeCheck = () => ({
+  type: types.CLOSE_CHECK
+})
+
+
+export const fetchCloseCheckRequest = () => ({
+  type: types.FETCH_CLOSE_CHECK_REQUEST
+})
+
+export const fetchCloseCheckSuccess = check => ({
+  type: types.FETCH_CLOSE_CHECK_SUCCESS,
+  check
+})
+
+export const fetchCloseCheckError = error => ({
+  type: types.FETCH_CLOSE_CHECK_ERROR,
+  error
+})
+
+//
+// Async Request
+//
+export const fetchCloseCheck = (check) => (dispatch, getState) => {
+  dispatch(fetchCloseCheckRequest())
+  fetch(`${API_BASE_URL}/checks/${check.id}/close`, {
+    method: 'PUT'
+  })
+  .then(res => {
+    if (!res.ok) {
+      return Promise.reject(res.statusText)
+    }
+    return res.json();
+  })
+  .then(checks => {
+    dispatch(fetchCloseCheckSuccess(checks))
+    dispatch(closeCheck())
+  })
+  .catch(error => {
+    dispatch(fetchCloseCheckError(error))
+  })
+}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchChecks, fetchNewCheck } from '../actions/checkActions'
+import { Link } from 'react-router-dom'
+import { fetchChecks, fetchNewCheck, fetchCloseCheck } from '../actions/checkActions'
 import MenuItemCard from '../components/MenuItemCard'
 
 import '../styles/order.css';
@@ -11,7 +12,7 @@ class Order extends Component {
   }
 
   onCloseCheckChange = (selectedCheck) => {
-    // this.props.selectTableConnect(selectedCheck)
+    this.props.loadCloseCheckConnect(selectedCheck)
   }
 
   onAddMenuItemChange = (item) => {
@@ -66,7 +67,7 @@ class Order extends Component {
         </div>
         <div className="order-wrapper column">
           <div className="order-buttons">
-            {!this.props.selectedCheck ? <button onClick={() => this.onOpenCheckChange(this.props.selectedTable)}>Open Check</button> : <button onClick={() => this.onCloseCheckChange(this.props.selectedTable)}>Close Check</button>}
+            {!this.props.selectedCheck ? <button onClick={() => this.onOpenCheckChange(this.props.selectedTable)}>Open Check</button> : <Link to="/" onClick={() => this.onCloseCheckChange(this.props.selectedCheck)}>Close Check</Link>}
           </div>
           <h3>ORDER: Table {this.props.selectedTable.number}</h3>
           <div className="order-items-wrapper">
@@ -88,7 +89,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatch => ({
   loadChecksConnect: () => dispatch(fetchChecks()),
-  loadNewCheckConnect: (table) => dispatch(fetchNewCheck(table))
+  loadNewCheckConnect: (table) => dispatch(fetchNewCheck(table)),
+  loadCloseCheckConnect: (check) => dispatch(fetchCloseCheck(check))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Order)
