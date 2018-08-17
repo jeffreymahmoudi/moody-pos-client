@@ -7,6 +7,7 @@ import Header from '../components/Header'
 // import Footer from '../components/Footer'
 import Tables from './Tables'
 import Order from './Order'
+import Checks from './Checks'
 
 import '../styles/app.css'
 
@@ -22,9 +23,10 @@ class App extends Component {
           <Header />
           <main>
             <Switch>
-              <Route exact path="/" component={Tables} />
+              <Route exact path="/" component={Landing} />
               <Route exact path="/tables" component={Tables} />
               <Route exact path="/order" component={Order} />
+              <Route exact path="/checks" component={Checks} />
               <Route expath="/landing" component={Landing} />
             </Switch>
           </main>

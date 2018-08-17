@@ -9,7 +9,7 @@ export default function Header() {
       <Link to="/" className="logo">App</Link>
       <nav className="header-right">
         <Link to="/tables">Tables</Link>
-        <Link to="/landing">Landing</Link>
+        <Link to="/checks">Checks</Link>        
       </nav>
     </header>
   ); 
