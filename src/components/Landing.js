@@ -13,8 +13,8 @@ const Landing = () => {
     <section className="landing">
       <div className="hero-image" style={landingStyle}>
         <div className="hero-text">
-          <h1>Afraid of commitments?</h1>
-          <p>Don't be anymore with this tracking and challenges tool.</p>
+          <h1>Moody POS</h1>
+          <p>A minimal Point of Sale system </p>
           <Link to="/tables">Go To Tables</Link>
         </div>
       </div>
@@ -23,13 +23,6 @@ const Landing = () => {
         <p>This application is a minimal PoS that handles a menu with tables and checks for a restaurant. <br />It was built to learn the skills of async operations using a Redux store.</p>
       </div>
     </section>
-
-
-
-
-    // <div className='landing'>
-    //   <h2>Landing</h2>
-    // </div>
   )
 }
 
