@@ -76,8 +76,50 @@ export const fetchNewCheck = (table) => (dispatch, getState) => {
   })
 }
 
-export const closeCheck = () => ({
-  type: types.CLOSE_CHECK
+
+
+export const fetchAddCheckItemRequest = () => ({
+  type: types.FETCH_ADD_CHECK_ITEM_REQUEST
+})
+
+export const fetchAddCheckItemSuccess = check => ({
+  type: types.FETCH_ADD_CHECK_ITEM_SUCCESS,
+  check
+})
+
+export const fetchAddCheckItemError = error => ({
+  type: types.FETCH_ADD_CHECK_ITEM_ERROR,
+  error
+})
+
+export const fetchAddCheckItem = (check, item) => (dispatch) => {
+  dispatch(fetchAddCheckItemRequest())
+  fetch(`${API_BASE_URL}/checks/${check.id}/addItem`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({itemId: item.id})
+  })
+  .then(res => {
+    if (!res.ok) {
+      return Promise.reject(res.statusText)
+    }
+    return res.json();
+  })
+  .then(check => {
+    dispatch(fetchAddCheckItemSuccess(check))
+  })
+  .catch(error => {
+    dispatch(fetchAddCheckItemError(error))
+  })
+}
+
+
+
+
+export const clearCheck = () => ({
+  type: types.CLEAR_CHECK
 })
 
 
@@ -111,7 +153,7 @@ export const fetchCloseCheck = (check) => (dispatch, getState) => {
   })
   .then(checks => {
     dispatch(fetchCloseCheckSuccess(checks))
-    dispatch(closeCheck())
+    // dispatch(clearCheck())
   })
   .catch(error => {
     dispatch(fetchCloseCheckError(error))

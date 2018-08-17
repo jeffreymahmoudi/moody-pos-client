@@ -5,7 +5,7 @@ import '../styles/table-card.css'
 const TableCard = ({table}) => {
   return (
     <div className="table-card">
-      <h3 className="table-number">{table.number}</h3>
+      <h4 className="table-number">Table {table.number}</h4>
     </div>
   )  
 }

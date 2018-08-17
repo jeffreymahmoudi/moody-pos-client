@@ -18,7 +18,7 @@ export const fetchMenuError = error => ({
 //
 // Async Request
 //
-export const fetchMenu = () => (dispatch, getState) => {
+export const fetchMenu = () => (dispatch) => {
   dispatch(fetchMenuRequest())
   fetch(`${API_BASE_URL}/items`)
   .then(res => {

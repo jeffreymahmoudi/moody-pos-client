@@ -1,11 +1,13 @@
 .tables-container {
+  /* height: 100vh; */
+  max-width: 1000px;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
-  background-color: #f1f1f1;
+  padding: 30px;
+  margin: 0 auto;
 }
 
 .tables-container a {
   text-decoration: none;
 }
-

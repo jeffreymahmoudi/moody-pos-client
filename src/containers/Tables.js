@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchTables, selectTable } from '../actions/tableActions'
+import { clearCheck } from '../actions/checkActions'
 import TableCard from '../components/TableCard'
 
-import './tables.css'
+import '../styles/tables.css'
 
 class TablesContainer extends Component {
   componentDidMount = () => {
@@ -12,6 +13,7 @@ class TablesContainer extends Component {
   }
   
   onSelectedTableChange = (selectedTable) => {
+    this.props.clearCheckConnect()
     this.props.selectTableConnect(selectedTable)
   }
 
@@ -26,11 +28,11 @@ class TablesContainer extends Component {
 
     const tables = this.props.tables.map((table, index) =>
       <Link
-        to={`/order/${table.id}`}
+        to={`/order`}
         onClick={() => this.onSelectedTableChange(table)}
         key={index}
       >
-        <TableCard  table={table} />
+        <TableCard table={table} />
       </Link>
     );
 
@@ -54,7 +56,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   loadTablesConnect: () => dispatch(fetchTables()),
-  selectTableConnect: (table) => dispatch(selectTable(table))
+  selectTableConnect: (table) => dispatch(selectTable(table)),
+  clearCheckConnect: () => dispatch(clearCheck())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(TablesContainer)

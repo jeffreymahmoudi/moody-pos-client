@@ -8,6 +8,7 @@ import Header from '../components/Header'
 import Tables from './Tables'
 import Order from './Order'
 
+import '../styles/app.css'
 
 class App extends Component {
   componentDidMount = () => {
@@ -19,12 +20,12 @@ class App extends Component {
       <Router>
         <div className="app-container">
           <Header />
-          <main className="app-content">
+          <main>
             <Switch>
               <Route exact path="/" component={Tables} />
-              <Route path="/tables" component={Tables} />
-              <Route path="/order/:tableId" component={Order} />
-              <Route path="/landing" component={Landing} />
+              <Route exact path="/tables" component={Tables} />
+              <Route exact path="/order" component={Order} />
+              <Route expath="/landing" component={Landing} />
             </Switch>
           </main>
           {/* <Footer /> */}

@@ -26,12 +26,13 @@ const checks = (state = initialState, action) => {
         loading: false,
       });
     case types.FETCH_NEW_CHECK_REQUEST:
-    case types.FETCH_CHECKS_ERROR:
-    case types.CLOSE_CHECK:
+    case types.FETCH_NEW_CHECK_ERROR:
+    case types.CLEAR_CHECK:
       return Object.assign({}, state, {
         selectedCheck: null
       })
     case types.FETCH_NEW_CHECK_SUCCESS:
+    case types.FETCH_ADD_CHECK_ITEM_SUCCESS:
     case types.FETCH_CLOSE_CHECK_SUCCESS:
       return Object.assign({}, state, {
         selectedCheck: action.check
