@@ -1,0 +1,29 @@
+.checks-container {
+  max-width: 1000px;
+  padding: 30px;
+  margin: 0 auto;  
+}
+
+.checks-wrapper a {
+  color: #000;
+  text-decoration: none;
+}
+
+.check-order {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #efefef;
+}
+
+.check-order:hover {
+  background: #efefef;
+  cursor: pointer;
+}
+
+.check-order p {
+  margin: 0;
+}
+
+.check-id {
+  font-size: 18px;
+}

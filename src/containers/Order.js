@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { fetchChecks, fetchNewCheck, fetchAddCheckItem, fetchTableCheck, fetchCloseCheck } from '../actions/checkActions'
+import { fetchTableCheck, fetchNewCheck, fetchAddCheckItem, fetchCloseCheck } from '../actions/checkActions'
 import MenuItemCard from '../components/MenuItemCard'
 
 import '../styles/order.css';

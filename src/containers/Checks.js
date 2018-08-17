@@ -1,64 +1,58 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { fetchTables, selectTable } from '../actions/tableActions'
-// import { clearCheck } from '../actions/checkActions'
-import TableCard from '../components/TableCard'
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { fetchChecks } from "../actions/checkActions";
 
-import '../styles/tables.css'
+import "../styles/checks.css";
 
 class ChecksContainer extends Component {
   componentDidMount = () => {
-    // this.props.loadTablesConnect()
-  }
-  
-  onSelectedTableChange = (selectedTable) => {
-    this.props.clearCheckConnect()
-    this.props.selectTableConnect(selectedTable)
-  }
+    this.props.loadChecksConnect();
+  };
 
   renderResults = () => {
     if (this.props.loading) {
-      return <p>Loading tables...</p>;
+      return <p>Loading checks...</p>;
     }
 
     if (this.props.error) {
       return <strong>{this.props.error.message}</strong>;
     }
 
-    const tables = this.props.tables.map((table, index) =>
-      <Link
-        to={`/order`}
-        onClick={() => this.onSelectedTableChange(table)}
-        key={index}
-      >
-        <TableCard table={table} />
+    const checks = this.props.checks.map((check, index) => (
+      <Link to={`/checks/${check.id}`}>
+        <div className="check-order" key={index}>
+          <p className="check-id">{check.id}</p>
+          <p>{new Date(check.updatedAt).toUTCString()}</p>
+          <p>Table: {check.tableId}</p>
+        </div>
       </Link>
-    );
+    ));
 
-    return tables;
-  }
+    return checks;
+  };
 
   render() {
     return (
       <div className="checks-container">
-        <h1>CHECKS</h1>
-        {/* {this.renderResults()} */}
+        <h1>Checks</h1>
+        <div className="checks-wrapper">{this.renderResults()}</div>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
-  tables: state.tables.tables,
-  loading: state.tables.loading,
-  error: state.tables.error
+  checks: state.checks.checks,
+  loading: state.checks.loading,
+  error: state.checks.error
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadTablesConnect: () => dispatch(fetchTables()),
-  selectTableConnect: (table) => dispatch(selectTable(table)),
-  // clearCheckConnect: () => dispatch(clearCheck())
+  loadChecksConnect: () => dispatch(fetchChecks())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ChecksContainer)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ChecksContainer);
