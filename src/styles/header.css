@@ -22,7 +22,7 @@ header a.logo {
 }
 
 header a.active {
-  background-color: dodgerblue;
+  background-color: #1e90ff;
   color: white;
 }
 
