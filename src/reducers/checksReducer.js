@@ -27,10 +27,11 @@ const checks = (state = initialState, action) => {
       });
     case types.FETCH_NEW_CHECK_REQUEST:
     case types.FETCH_NEW_CHECK_ERROR:
-    case types.CLEAR_CHECK:
+    case types.FETCH_TABLE_CHECK_NOT_FOUND:
       return Object.assign({}, state, {
         selectedCheck: null
       })
+    case types.FETCH_TABLE_CHECK_SUCCESS:
     case types.FETCH_NEW_CHECK_SUCCESS:
     case types.FETCH_ADD_CHECK_ITEM_SUCCESS:
     case types.FETCH_CLOSE_CHECK_SUCCESS:

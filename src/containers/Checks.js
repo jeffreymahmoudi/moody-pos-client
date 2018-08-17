@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { fetchTables, selectTable } from '../actions/tableActions'
-import { clearCheck } from '../actions/checkActions'
+// import { clearCheck } from '../actions/checkActions'
 import TableCard from '../components/TableCard'
 
 import '../styles/tables.css'
@@ -58,7 +58,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   loadTablesConnect: () => dispatch(fetchTables()),
   selectTableConnect: (table) => dispatch(selectTable(table)),
-  clearCheckConnect: () => dispatch(clearCheck())
+  // clearCheckConnect: () => dispatch(clearCheck())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChecksContainer)

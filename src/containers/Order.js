@@ -1,23 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { fetchChecks, fetchNewCheck, fetchAddCheckItem, fetchCloseCheck } from '../actions/checkActions'
+import { Redirect } from 'react-router-dom'
+import { fetchChecks, fetchNewCheck, fetchAddCheckItem, fetchTableCheck, fetchCloseCheck } from '../actions/checkActions'
 import MenuItemCard from '../components/MenuItemCard'
 
 import '../styles/order.css';
 
 class Order extends Component {
+  componentDidMount = () => {
+    this.props.loadTableCheckConnect(this.props.selectedTable)
+  }
+
   onOpenCheckChange = (selectedTable) => {
     this.props.loadNewCheckConnect(selectedTable)
+  }
+
+  onAddCheckItemChange = (check, item) => {
+    this.props.loadAddCheckItemConnect(check, item)
   }
 
   onCloseCheckChange = (selectedCheck) => {
     this.props.loadCloseCheckConnect(selectedCheck)
   }
 
-  onAddCheckItemChange = (check, item) => {
-    this.props.loadAddCheckItemConnect(check, item)
-  }
 
   renderMenuItems = () => {
     const menu = this.props.menu.map((item, index) =>
@@ -84,6 +89,12 @@ class Order extends Component {
   }
   
   render() {
+    if(!this.props.selectedTable) {
+      return (
+        <Redirect to='/' />
+      )
+    }
+
     return (
       <div className="order-container">
         <div className="row">
@@ -122,7 +133,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  loadChecksConnect: () => dispatch(fetchChecks()),
+  loadTableCheckConnect: (table) => dispatch(fetchTableCheck(table)),
   loadNewCheckConnect: (table) => dispatch(fetchNewCheck(table)),
   loadAddCheckItemConnect: (check, item) => dispatch(fetchAddCheckItem(check, item)),
   loadCloseCheckConnect: (check) => dispatch(fetchCloseCheck(check))

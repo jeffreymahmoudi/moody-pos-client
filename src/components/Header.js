@@ -6,7 +6,7 @@ import '../styles/header.css'
 export default function Header() {
   return (
     <header role="banner">
-      <Link to="/" className="logo">App</Link>
+      <Link to="/" className="logo">Moody POS</Link>
       <nav className="header-right">
         <Link to="/tables">Tables</Link>
         <Link to="/checks">Checks</Link>        

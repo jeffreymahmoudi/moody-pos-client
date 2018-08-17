@@ -36,6 +36,7 @@ export const fetchChecks = () => (dispatch, getState) => {
 }
 
 
+
 export const fetchNewCheckRequest = () => ({
   type: types.FETCH_NEW_CHECK_REQUEST
 })
@@ -92,6 +93,9 @@ export const fetchAddCheckItemError = error => ({
   error
 })
 
+//
+// Async Request
+//
 export const fetchAddCheckItem = (check, item) => (dispatch) => {
   dispatch(fetchAddCheckItemRequest())
   fetch(`${API_BASE_URL}/checks/${check.id}/addItem`, {
@@ -115,12 +119,6 @@ export const fetchAddCheckItem = (check, item) => (dispatch) => {
   })
 }
 
-
-
-
-export const clearCheck = () => ({
-  type: types.CLEAR_CHECK
-})
 
 
 export const fetchCloseCheckRequest = () => ({
@@ -157,5 +155,50 @@ export const fetchCloseCheck = (check) => (dispatch, getState) => {
   })
   .catch(error => {
     dispatch(fetchCloseCheckError(error))
+  })
+}
+
+
+
+export const fetchTableCheckRequest = () => ({
+  type: types.FETCH_TABLE_CHECK_REQUEST
+})
+
+export const fetchTableCheckSuccess = check => ({
+  type: types.FETCH_TABLE_CHECK_SUCCESS,
+  check
+})
+
+export const fetchTableCheckNotFound = () => ({
+  type: types.FETCH_TABLE_CHECK_NOT_FOUND,
+})
+
+export const fetchTableCheckError = error => ({
+  type: types.FETCH_TABLE_CHECK_ERROR,
+  error
+})
+
+export const fetchTableCheck = (table) => (dispatch, getState) => {
+  dispatch(fetchTableCheckRequest())
+  fetch(`${API_BASE_URL}/checks`)
+  .then(res => {
+    if (!res.ok) {
+      return Promise.reject(res.statusText)
+    }
+    return res.json();
+  })
+  .then(checks => {
+    if(!checks || checks.length < 1) {
+      dispatch(fetchTableCheckNotFound())
+    }
+
+    const check = checks.find(check => check.tableId === table.id && !check.closed)
+    if(!check) {
+      dispatch(fetchTableCheckNotFound())
+    }
+    dispatch(fetchTableCheckSuccess(check))
+  })
+  .catch(error => {
+    dispatch(fetchTableCheckError(error))
   })
 }

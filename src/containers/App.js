@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchMenu } from '../actions/menuActions'
+import { fetchTables } from '../actions/tableActions'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Landing from '../components/Landing'
 import Header from '../components/Header'
@@ -14,6 +15,7 @@ import '../styles/app.css'
 class App extends Component {
   componentDidMount = () => {
     this.props.loadMenuConnect()
+    this.props.loadTablesConnect()
   }
   
   render() {
@@ -38,7 +40,8 @@ class App extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  loadMenuConnect: () => dispatch(fetchMenu())
+  loadMenuConnect: () => dispatch(fetchMenu()),
+  loadTablesConnect: () => dispatch(fetchTables())
 })
 
 export default connect(null, mapDispatchToProps)(App)
