@@ -10,15 +10,16 @@
 }
 
 .check-order {
+  background: #efefef;
   padding: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid #efefef;
 }
 
-.check-order:hover {
+/* .check-order:hover {
   background: #efefef;
   cursor: pointer;
-}
+} */
 
 .check-order p {
   margin: 0;

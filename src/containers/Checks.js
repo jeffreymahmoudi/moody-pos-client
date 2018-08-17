@@ -10,6 +10,25 @@ class ChecksContainer extends Component {
     this.props.loadChecksConnect();
   };
 
+  renderTotal = (check) => {
+    let total = 0
+      for(let i = 0; i < check.orderedItems.length; i++) {
+        total += check.orderedItems[i].price
+      }
+      return total
+  }
+
+  renderOrderedItems = (check) => {
+    const items = check.orderedItems.map((item, index) => (
+      <React.Fragment>
+        <p>{item.name}</p>
+        <p>${item.price}.00</p>
+      </React.Fragment>
+    ))
+
+    return items
+  }
+
   renderResults = () => {
     if (this.props.loading) {
       return <p>Loading checks...</p>;
@@ -19,14 +38,19 @@ class ChecksContainer extends Component {
       return <strong>{this.props.error.message}</strong>;
     }
 
-    const checks = this.props.checks.map((check, index) => (
-      <Link to={`/checks/${check.id}`}>
+    const checks = this.props.checks.map((check, index) => (      
+      // <Link to={`/checks/${check.id}`}>
         <div className="check-order" key={index}>
           <p className="check-id">{check.id}</p>
           <p>{new Date(check.updatedAt).toUTCString()}</p>
           <p>Table: {check.tableId}</p>
+          <p>Total: ${this.renderTotal(check)}.00</p>
+          <details>
+            <summary>Ordered Items</summary>
+            {this.renderOrderedItems(check)}
+          </details>
         </div>
-      </Link>
+      // </Link>
     ));
 
     return checks;
